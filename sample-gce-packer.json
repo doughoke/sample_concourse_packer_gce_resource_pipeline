@@ -1,0 +1,14 @@
+{
+  "builders": [
+    {
+      "type": "googlecompute",
+      "account_file": "json_key.json",
+      "project_id": "my-project",
+      "source_image_family": "centos-7",
+      "omit_external_ip": true,
+      "use_internal_ip": true,
+      "ssh_username": "packer_usr",
+      "zone": "us-central1-c"
+    }
+  ]
+}
