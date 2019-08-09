@@ -1,0 +1,41 @@
+resource_types:
+- name: packer-gce
+  type: registry-image
+  source:
+    repository: doughoke/packer-resource-gce
+
+resources:
+# To be added later
+# - name: base-image
+#   type: packer-gce
+#   source:
+#     region: eu-west-1
+#     owners: ["12345678"]
+#     filters:
+#       name: ["Ubuntu *"]
+#       "tag:System": ["packer"]
+
+- name: created-image
+  type: packer-gce
+  source:
+    region: us-central1c
+    credentials: ((json_key))
+
+- name: packer-source
+  type: git
+  source:
+    uri: https://github.com/doughoke/sample_concourse_packer_gce_resource_pipeline.git
+
+jobs:
+- name: new-image
+  plan:
+  - get: packer-source
+    trigger: true
+  # - get: base-ami
+  #   trigger: true
+  - put: created-image
+    params:
+      template: packer-source/sample-gce-packer.json
+      # var_file:
+      #   - base-ami/version.json
+      #   - my-ami-source/packer_params.json
