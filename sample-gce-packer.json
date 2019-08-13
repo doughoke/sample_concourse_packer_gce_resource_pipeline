@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "googlecompute",
-      "account_file": "json_key.json",
+      "account_file": "/opt/resource/json_key.json",
       "project_id": "my-project",
       "source_image_family": "centos-7",
       "omit_external_ip": true,

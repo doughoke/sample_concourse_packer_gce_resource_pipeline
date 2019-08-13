@@ -2,8 +2,8 @@ resource_types:
 - name: packer-gce
   type: registry-image
   source:
-    repository: doughoke/packer-resource-gce
-
+    repository: nexus.cardinalhealth.net:8445/doughoke/packer-resource-gce
+    tag: 0.0.8
 resources:
 # To be added later
 # - name: base-image
@@ -20,6 +20,7 @@ resources:
   source:
     region: us-central1c
     credentials: ((json_key))
+    debug: true
 
 - name: packer-source
   type: git
